@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 
 class App extends Component {
   render() {
+    const text = 'これはてすとです';
+    const dom = <h1 className="foo">{text}</h1>;
     return (
-      <div>
-        <header>
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-        </header>
-        <h1>Hello, world.</h1>
-      </div>
+      <React.Fragment>
+        {dom}
+        <input
+          type="text"
+          onClick={() => {
+            console.log('Click!!');
+          }}
+        />
+      </React.Fragment>
     );
   }
 }
