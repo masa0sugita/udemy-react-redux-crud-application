@@ -1,42 +1,35 @@
-import React, { Component } from 'react';
-
-/* class App extends Component {
-  render() {
-    const text = 'これはてすとです';
-    const dom = <h1 className="foo">{text}</h1>;
-    return (
-      <React.Fragment>
-        {dom}
-        <input
-          type="text"
-          onClick={() => {
-            console.log('Click!!');
-          }}
-        />
-      </React.Fragment>
-    );
-  }
-}
- */
+import React from 'react';
 
 const App = () => {
   const text = 'これはてすとです';
   const dom = <h1 className="foo">{text}</h1>;
+  const profiles = [
+    {
+      name: "masao",
+      age: 45
+    },
+    {
+      name: "taro",
+    }
+  ]
   return (
     <React.Fragment>
       {dom}
-      <input
-        type="text"
-        onClick={() => {
-          console.log('Click!!');
-        }}
-      />
-    <Cat />
+    
+    {
+      profiles.map((profile, index) => {
+        return <User name={profile.name} age={profile.age} key={index} />
+      })
+    }
     </React.Fragment>
   );
 };
 
-const Cat = () => {
-  return <div>みゃー</div>
+const User = (props) => {
+  return <div>I am {props.name}. age {props.age} yo.</div>
 }
+User.defaultProps = {
+  age: 100
+}
+
 export default App;
