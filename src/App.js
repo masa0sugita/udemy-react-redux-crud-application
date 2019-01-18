@@ -9,7 +9,7 @@ class App extends Component {
             Edit <code>src/App.js</code> and save to reload.
           </p>
         </header>
-        Hello, world.
+        <h1>Hello, world.</h1>
       </div>
     );
   }
