@@ -26,18 +26,18 @@ class EventsNew extends Component {
     this.props.history.push('/');
   }
   render() {
-    const { handleSubmit, pristine, submitting } = this.props
+    const { handleSubmit, pristine, submitting, invalid } = this.props
     return (
       <React.Fragment>
         <form onSubmit={handleSubmit(this.onSubmit)}>
         <div>
-            <Field label="タイトル" name="title" component="input" type="text" component={this.renderField} />
+            <Field label="タイトル" name="title" type="text" component={this.renderField} />
           </div>
           <div>
-            <Field label="本文" name="body" component="input" type="text" component={this.renderField} />
+            <Field label="本文" name="body" type="text" component={this.renderField} />
           </div>
           <div>
-            <input type="submit" value="Submit" disabled={pristine || submitting} />
+            <input type="submit" value="Submit" disabled={pristine || submitting || invalid} />
             <br />
             <Link to="/">一覧へ戻る</Link>
           </div>
