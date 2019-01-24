@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { getEvent, deleteEvents, putEvent } from '../actions';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 class EventsShow extends Component {
   constructor(props) {
@@ -23,10 +25,13 @@ class EventsShow extends Component {
       meta: { touched, error }
     } = field;
     return (
-      <div>
-        <input {...input} placeholder={label} type={type} />
-        {touched && error && <span>{error}</span>}
-      </div>
+      <TextField
+        hintText={label}
+        floatingLabelText={label}
+        errorText={touched && error}
+        {...input}
+        fullWidth={true}
+      />
     );
   }
   async onSubmit(values) {
@@ -40,6 +45,9 @@ class EventsShow extends Component {
   }
   render() {
     const { handleSubmit, pristine, submitting, invalid } = this.props;
+    const style = {
+      margin: 12,
+    }
     return (
       <React.Fragment>
         <form onSubmit={handleSubmit(this.onSubmit)}>
@@ -59,19 +67,9 @@ class EventsShow extends Component {
               component={this.renderField}
             />
           </div>
-          <div>
-            <input
-              type="submit"
-              value="Submit"
-              disabled={pristine || submitting || invalid}
-            />
-            <br />
-            <Link to="/">一覧へ戻る</Link>
-            <br />
-            <Link to="/" onClick={this.onDeleteClick}>
-              削除
-            </Link>
-          </div>
+          <RaisedButton label="送信" type="submit" style={style} disabled={pristine || submitting || invalid} />
+          <RaisedButton label="一覧へ戻る" style={style} containerElement={<Link to="/" />} />
+          <RaisedButton label="削除する" style={style} onClick={this.onDeleteClick} />
         </form>
       </React.Fragment>
     );
